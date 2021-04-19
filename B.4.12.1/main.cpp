@@ -35,8 +35,8 @@ class Auto {
 
     Auto(const Auto & a){
         radzahl = a.radzahl;
-        farbe = a.farbe;
-        ps = a.ps;
+        farbe = a.farbe ;
+        ps = a.ps ;
         anzahl_sitze = a.anzahl_sitze;
         spritverbrauch = a.spritverbrauch; // auf 100km
         tankinhalt = a.tankinhalt;
@@ -148,14 +148,90 @@ void tests(){
     std::cout <<(subTestOk?"":"\033[38;5;1mset_tankinhalt() größer als tankgroesse falsch\033[m\n");
     std::cout <<"set_tankinhalt(): " <<(testOk?"\033[38;5;2mpassed\033[m":"\033[38;5;1mfailed\033[m") << std::endl << std::endl;
 
+    testNb= 0;
+    Auto *test4 = new Auto();
+    allgood &= testOk = testClassValues(test4,radzahl_l[testNb],farbe_l[testNb],ps_l[testNb],anzahl_sitze_l[testNb],spritverbrauch_l[testNb],tankinhalt_l[testNb],tankgroesse_l[testNb]);
+    std::cout <<"Standard Konstruktor Heap: " <<(testOk?"\033[38;5;2mpassed\033[m":"\033[38;5;1mfailed\033[m") << std::endl <<std::endl;
+
+    ++testNb;
+    Auto *test5 = new Auto(6,"Rot",100,8,10,50,100);
+    allgood &= testOk = testClassValues(test5,radzahl_l[testNb],farbe_l[testNb],ps_l[testNb],anzahl_sitze_l[testNb],spritverbrauch_l[testNb],tankinhalt_l[testNb],tankgroesse_l[testNb]);
+    std::cout <<"Allgemeiner Konstruktor Heap: " <<(testOk?"\033[38;5;2mpassed\033[m":"\033[38;5;1mfailed\033[m") << std::endl << std::endl;
+
+    ++testNb;
+    allgood &= testOk = subTestOk =  test4->fahren(500)== 500;
+    std::cout <<(subTestOk?"":"\033[38;5;1mfahren() return mit genug sprit falsch\033[m\n");
+    allgood &= testOk &= subTestOk = testClassValues(test4,radzahl_l[testNb],farbe_l[testNb],ps_l[testNb],anzahl_sitze_l[testNb],spritverbrauch_l[testNb],tankinhalt_l[testNb],tankgroesse_l[testNb]);
+    ++testNb;
+    allgood &= testOk &= subTestOk =  test4->fahren(1000)== 500;
+    std::cout <<(subTestOk?"":"\033[38;5;1mfahren() return mit zu wenig sprit falsch\033[m\n");
+    allgood &= testOk &= subTestOk = testClassValues(test4,radzahl_l[testNb],farbe_l[testNb],ps_l[testNb],anzahl_sitze_l[testNb],spritverbrauch_l[testNb],tankinhalt_l[testNb],tankgroesse_l[testNb]);
+    std::cout <<"fahren() Heap: " <<(testOk?"\033[38;5;2mpassed\033[m":"\033[38;5;1mfailed\033[m") << std::endl << std::endl;
+
+    ++testNb;
+    Auto * test6 = new Auto(*test5);
+    allgood &= testOk = testClassValues(test6,radzahl_l[testNb],farbe_l[testNb],ps_l[testNb],anzahl_sitze_l[testNb],spritverbrauch_l[testNb],tankinhalt_l[testNb],tankgroesse_l[testNb]);
+    std::cout <<"Kopierkonstruktor Heap: " <<(testOk?"\033[38;5;2mpassed\033[m":"\033[38;5;1mfailed\033[m") << std::endl << std::endl;
+
+    ++testNb;
+    test4->set_tankinhalt(30);
+    allgood &= testOk = subTestOk = testClassValues(test4,radzahl_l[testNb],farbe_l[testNb],ps_l[testNb],anzahl_sitze_l[testNb],spritverbrauch_l[testNb],tankinhalt_l[testNb],tankgroesse_l[testNb]);
+    std::cout <<(subTestOk?"":"\033[38;5;1mset_tankinhalt() kleiner als tankgroesse falsch\033[m\n");
+    ++testNb;
+    test4->set_tankinhalt(300);
+    allgood &= testOk &= subTestOk = testClassValues(test4,radzahl_l[testNb],farbe_l[testNb],ps_l[testNb],anzahl_sitze_l[testNb],spritverbrauch_l[testNb],tankinhalt_l[testNb],tankgroesse_l[testNb]);
+    std::cout <<(subTestOk?"":"\033[38;5;1mset_tankinhalt() größer als tankgroesse falsch\033[m\n");
+    std::cout <<"set_tankinhalt() Heap: " <<(testOk?"\033[38;5;2mpassed\033[m":"\033[38;5;1mfailed\033[m") << std::endl << std::endl;
+
+    delete test4;
+    delete test5;
+    delete test6;
+
+    testNb = 0;
+    static Auto test7 = Auto();
+    allgood &= testOk = testClassValues(&test7,radzahl_l[testNb],farbe_l[testNb],ps_l[testNb],anzahl_sitze_l[testNb],spritverbrauch_l[testNb],tankinhalt_l[testNb],tankgroesse_l[testNb]);
+    std::cout <<"Standard Konstruktor Static: " <<(testOk?"\033[38;5;2mpassed\033[m":"\033[38;5;1mfailed\033[m") << std::endl <<std::endl;
+
+    ++testNb;
+    static Auto test8(6,"Rot",100,8,10,50,100);
+    allgood &= testOk = testClassValues(&test8,radzahl_l[testNb],farbe_l[testNb],ps_l[testNb],anzahl_sitze_l[testNb],spritverbrauch_l[testNb],tankinhalt_l[testNb],tankgroesse_l[testNb]);
+    std::cout <<"Allgemeiner Konstruktor Static: " <<(testOk?"\033[38;5;2mpassed\033[m":"\033[38;5;1mfailed\033[m") << std::endl << std::endl;
+
+    ++testNb;
+    allgood &= testOk = subTestOk =  test7.fahren(500)== 500;
+    std::cout <<(subTestOk?"":"\033[38;5;1mfahren() return mit genug sprit falsch\033[m\n");
+    allgood &= testOk &= subTestOk = testClassValues(&test7,radzahl_l[testNb],farbe_l[testNb],ps_l[testNb],anzahl_sitze_l[testNb],spritverbrauch_l[testNb],tankinhalt_l[testNb],tankgroesse_l[testNb]);
+    ++testNb;
+    allgood &= testOk &= subTestOk =  test7.fahren(1000)== 500;
+    std::cout <<(subTestOk?"":"\033[38;5;1mfahren() return mit zu wenig sprit falsch\033[m\n");
+    allgood &= testOk &= subTestOk = testClassValues(&test7,radzahl_l[testNb],farbe_l[testNb],ps_l[testNb],anzahl_sitze_l[testNb],spritverbrauch_l[testNb],tankinhalt_l[testNb],tankgroesse_l[testNb]);
+    std::cout <<"fahren() Static: " <<(testOk?"\033[38;5;2mpassed\033[m":"\033[38;5;1mfailed\033[m") << std::endl << std::endl;
+
+    ++testNb;
+    Auto test9 = test8;
+    allgood &= testOk = testClassValues(&test9,radzahl_l[testNb],farbe_l[testNb],ps_l[testNb],anzahl_sitze_l[testNb],spritverbrauch_l[testNb],tankinhalt_l[testNb],tankgroesse_l[testNb]);
+    std::cout <<"Kopierkonstruktor Static: " <<(testOk?"\033[38;5;2mpassed\033[m":"\033[38;5;1mfailed\033[m") << std::endl << std::endl;
+
+    ++testNb;
+    test7.set_tankinhalt(30);
+    allgood &= testOk = subTestOk = testClassValues(&test7,radzahl_l[testNb],farbe_l[testNb],ps_l[testNb],anzahl_sitze_l[testNb],spritverbrauch_l[testNb],tankinhalt_l[testNb],tankgroesse_l[testNb]);
+    std::cout <<(subTestOk?"":"\033[38;5;1mset_tankinhalt() kleiner als tankgroesse falsch\033[m\n");
+    ++testNb;
+    test7.set_tankinhalt(300);
+    allgood &= testOk &= subTestOk = testClassValues(&test7,radzahl_l[testNb],farbe_l[testNb],ps_l[testNb],anzahl_sitze_l[testNb],spritverbrauch_l[testNb],tankinhalt_l[testNb],tankgroesse_l[testNb]);
+    std::cout <<(subTestOk?"":"\033[38;5;1mset_tankinhalt() größer als tankgroesse falsch\033[m\n");
+    std::cout <<"set_tankinhalt() Static: " <<(testOk?"\033[38;5;2mpassed\033[m":"\033[38;5;1mfailed\033[m") << std::endl << std::endl;
+
+
     std::cout <<(allgood?"\033[38;5;2mTests passed\033[m":"\033[38;5;1mTests failed\033[m") << std::endl;
 
-}
 
+}
 
 
 int main(int argc, char const *argv[])
 {
     tests();
+
     return 0;
 }
