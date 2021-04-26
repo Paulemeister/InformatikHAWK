@@ -33,18 +33,10 @@ class Auto {
         tankgroesse = init_tankgroesse;
     }
 
-    Auto(const Auto & a){
-        radzahl = a.radzahl;
-        farbe = a.farbe ;
-        ps = a.ps ;
-        anzahl_sitze = a.anzahl_sitze;
-        spritverbrauch = a.spritverbrauch; // auf 100km
-        tankinhalt = a.tankinhalt;
-        tankgroesse = a.tankgroesse;
+    Auto(const Auto & a): radzahl{a.radzahl},farbe{a.farbe}, ps{a.ps},anzahl_sitze{a.anzahl_sitze}, spritverbrauch{a.spritverbrauch}, tankinhalt{a.tankinhalt},tankgroesse{a.tankgroesse}
+    {
     }
-    ~Auto(){
-
-    }
+    ~Auto(){}
 
     float fahren (float strecke){
         float sprit = strecke * spritverbrauch /100;
