@@ -100,11 +100,12 @@ bool testClassValues(Auto * testClass,int radzahl,std::string farbe,float ps,int
 
 void tests(){
     
-    bool allgood = true;
-    bool testOk;
-    bool subTestOk;
+    bool allgood = true; // alle tests sind richtig
+    bool testOk; // Obergruppe von Tests richtig
+    bool subTestOk; // einzelner Test richtig
     int testNb= 0;
 
+    // richtige Werte für die Tests
     int radzahl_l[] = {4,6,4,4,6,4,4};
     std::string farbe_l[] ={"Schwarz","Rot","Schwarz","Schwarz","Rot","Schwarz","Schwarz"};
     float ps_l[] ={200,100,200,200,100,200,200};
@@ -113,7 +114,7 @@ void tests(){
     float tankinhalt_l[] ={80,50,40,0,50,30,80};
     float tankgroesse_l[] ={80,100,80,80,100,80,80};
 
-    
+    // Stack
     
     Auto test1 = Auto();
     allgood &= testOk = testClassValues(&test1,radzahl_l[testNb],farbe_l[testNb],ps_l[testNb],anzahl_sitze_l[testNb],spritverbrauch_l[testNb],tankinhalt_l[testNb],tankgroesse_l[testNb]);
@@ -189,7 +190,7 @@ void tests(){
     delete test5;
     delete test6;
 
-    //Global bzw Datensegment
+    //Datensegment
 
     testNb = 0;
 
