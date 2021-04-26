@@ -7,7 +7,7 @@ class Auto {
     std::string farbe;
     float ps;
     int anzahl_sitze;
-    float spritverbrauch;
+    float spritverbrauch; //in l/100km
     float tankinhalt;
     float tankgroesse;
     
@@ -23,23 +23,18 @@ class Auto {
         tankinhalt = tankgroesse;
     }
 
-    Auto(int init_radzahl,std::string init_farbe,float init_ps,int init_anzahl_sitze,float init_spritverbrauch, float init_tankinhalt,float init_tankgroesse){
-        radzahl=init_radzahl;
-        farbe = init_farbe;
-        ps = init_ps;
-        anzahl_sitze = init_anzahl_sitze;
-        spritverbrauch = init_spritverbrauch;
-        tankinhalt = init_tankinhalt;
-        tankgroesse = init_tankgroesse;
+    Auto(int init_radzahl,std::string init_farbe,float init_ps,int init_anzahl_sitze,float init_spritverbrauch, float init_tankinhalt,float init_tankgroesse):
+        radzahl{init_radzahl}, farbe{init_farbe}, ps{init_ps}, anzahl_sitze{init_anzahl_sitze}, spritverbrauch{init_spritverbrauch},tankinhalt{init_tankinhalt},tankgroesse{init_tankgroesse}{
     }
 
     Auto(const Auto & a): radzahl{a.radzahl},farbe{a.farbe}, ps{a.ps},anzahl_sitze{a.anzahl_sitze}, spritverbrauch{a.spritverbrauch}, tankinhalt{a.tankinhalt},tankgroesse{a.tankgroesse}
     {
     }
+
     ~Auto(){}
 
     float fahren (float strecke){
-        float sprit = strecke * spritverbrauch /100;
+        float sprit = strecke * spritverbrauch /100; 
 
         if (sprit > tankinhalt){
             strecke = 100*tankinhalt/spritverbrauch;
@@ -49,13 +44,21 @@ class Auto {
         tankinhalt -= sprit;
         return strecke;
     }
-    float get_radzahl(){return radzahl;}
+
+    int get_radzahl(){return radzahl;}
+
     std::string get_farbe(){return farbe;}
+
     float get_ps(){return ps;}
+
     int get_anzahl_sitze(){return anzahl_sitze;}
+
     float get_spritverbrauch(){return spritverbrauch;}
+
     float get_tankinhalt(){return tankinhalt;}
+
     float get_tankgroesse(){return tankgroesse;}
+
     void set_tankinhalt(float amount){
         float temp_inhalt = tankinhalt+amount;
         if (temp_inhalt > tankgroesse){
@@ -67,6 +70,8 @@ class Auto {
         return;
     }
 };
+
+Auto globalesAuto;
 
 Auto test7 = Auto();
 Auto test8(6,"Rot",100,8,10,50,100);
@@ -144,6 +149,7 @@ void tests(){
     std::cout <<(subTestOk?"":"\033[38;5;1mset_tankinhalt() größer als tankgroesse falsch\033[m\n");
     std::cout <<"set_tankinhalt(): " <<(testOk?"\033[38;5;2mpassed\033[m":"\033[38;5;1mfailed\033[m") << std::endl << std::endl;
 
+    //Heap
     testNb= 0;
     Auto *test4 = new Auto();
     allgood &= testOk = testClassValues(test4,radzahl_l[testNb],farbe_l[testNb],ps_l[testNb],anzahl_sitze_l[testNb],spritverbrauch_l[testNb],tankinhalt_l[testNb],tankgroesse_l[testNb]);
@@ -183,8 +189,10 @@ void tests(){
     delete test5;
     delete test6;
 
+    //Global bzw Datensegment
+
     testNb = 0;
-    
+
     allgood &= testOk = testClassValues(&test7,radzahl_l[testNb],farbe_l[testNb],ps_l[testNb],anzahl_sitze_l[testNb],spritverbrauch_l[testNb],tankinhalt_l[testNb],tankgroesse_l[testNb]);
     std::cout <<"Standard Konstruktor Global: " <<(testOk?"\033[38;5;2mpassed\033[m":"\033[38;5;1mfailed\033[m") << std::endl <<std::endl;
 
@@ -225,6 +233,5 @@ void tests(){
 int main(int argc, char const *argv[])
 {
     tests();
-
     return 0;
 }
