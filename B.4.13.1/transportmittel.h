@@ -14,7 +14,7 @@ public:
     void bewegen(string Richtung);
     double getHoehe();
     double getBreite();
-    void setHohe(double neueHohe);
+    void setHoehe(double neueHohe);
     void setBreite(double neueBreite);
 };
 
