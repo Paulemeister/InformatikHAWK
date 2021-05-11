@@ -41,11 +41,11 @@ using namespace std;
 			PAUSE();
 			return;
 		}else {
-
+            ptr->next = NULL;
 			ptr->name = hilfe;
 			getline (Quelle, ptr->interpret);
 			getline (Quelle, hilfe);
-			ptr->kategorie = static_cast<mkat> (atoi(hilfe.c_str()));
+			ptr->kategorie = static_cast<mkat> (atoi(hilfe.c_str())); // "3"
             if(start_pointer == NULL){
                 start_pointer = ptr;
             }
@@ -66,11 +66,6 @@ void playlist::Abspielen(){
         cout << "Spiele " << ptr->name << "\nvon: " << ptr->interpret << endl;
         cout << "Genre: " << playlist::enumkat_in_string(ptr->kategorie) << endl;
         cout << '\a';
-        SLEEP(1000);
-        cout << '\a';
-        SLEEP(1000);
-        cout << '\a';
-        cout << endl;
         CLEAR();
         ptr = ptr->next;
     }

@@ -19,20 +19,24 @@ int main(int argc, char const *argv[])
     cout << "LandTransportmittel:\n";
     ltpm.fahren(30);
     ltpm.schieben(2);
+    ltpm.bewegen("Süden");
     cout << "Radzahl: " << ltpm.getRadzahl() << endl << endl;
 
     cout << "WasserTransportmittel:\n";
     wtpm.ablegen("Rotterdam");
+    ltpm.bewegen("Osten");
     wtpm.anlegen("Hamburg");
     cout << "Bruttoregistertonnen: " << wtpm.getBruttoregistertonnen() << endl << endl;
 
     cout << "Fahrrad:\n";
     frd.freihaendigfahren("Juhu");
     frd.schieben(1);
+    frd.bewegen("Westen");
     cout << "Gänge: " << frd.getAnzahlgaenge() << endl << endl;
 
     cout << "Rikscha:\n";
     rks.schieben(3);
+    rks.bewegen("Südwest");
     cout << "Farbe: " << rks.getFarbe() << endl << endl;
 
     cout << "Auto:\n";

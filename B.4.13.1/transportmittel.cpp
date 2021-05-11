@@ -118,6 +118,10 @@ Rikscha::~Rikscha()
 {
 
 }
+void Rikscha::ziehen(int anzahlpersonen)
+{
+    cout << "ziehe " << anzahlpersonen << " Personen\n";
+}
 void Rikscha::schieben(double km)
 {
     cout << "Rikscha " << km << " km schieben\n";

@@ -61,6 +61,7 @@ private:
 public:
     Rikscha(double hoehe,double breite,int radzahl,string farbe);
     ~Rikscha();
+    void ziehen(int anzahlpersonen);
     void schieben(double km);
     string getFarbe();
 };

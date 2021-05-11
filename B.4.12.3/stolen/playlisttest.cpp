@@ -3,16 +3,19 @@
 /* Inhalt:		Benutzung der Klasse plylist           	*/
 /* Author:		Bernd Stock								*/
 /* Erstellt am: Maerz 2019								*/
-/* Geaendert:	                                        */
+/* Geaendert:	Mai 2021 (Lösen der Aufgabe)            */
 /*						                      		    */
 /*======================================================*/
 
 
 
-
+// Original ohne PlaylistLaden 
 #include "playlist.cpp"
+// Neue Funktionen
 #include "aufgabe.cpp"
-#include "getch.cpp"
+
+// Platformspezifische Funktionen wurden durch Makros ersetzt
+// Der Restliche Code dieser Datei ist bis auf case 5 unverändert
 
 using namespace std;
 
