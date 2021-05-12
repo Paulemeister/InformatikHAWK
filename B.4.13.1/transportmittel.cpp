@@ -25,14 +25,7 @@ double Transportmittel::getBreite()
 {
     return breite;
 }
-void Transportmittel::setHoehe(double newHohe)
-{
-    hoehe = newHohe;
-}
-void Transportmittel::setBreite(double newBreite)
-{
-    breite = newBreite;
-}
+
 
 //LandTransportmittel
 

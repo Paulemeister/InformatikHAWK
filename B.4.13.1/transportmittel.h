@@ -14,8 +14,6 @@ public:
     void bewegen(string Richtung);
     double getHoehe();
     double getBreite();
-    void setHoehe(double neueHohe);
-    void setBreite(double neueBreite);
 };
 
 class LandTransportmittel: public Transportmittel
@@ -30,7 +28,7 @@ public:
     int getRadzahl();
 };
 
-class WasserTransportmittel: Transportmittel
+class WasserTransportmittel: public Transportmittel
 {
 private:
     double bruttoregistertonnen;
