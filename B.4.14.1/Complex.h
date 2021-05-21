@@ -1,15 +1,15 @@
-template <class C> class Complex
+class Complex
 {
 private:
-    C Re; //Re
-    C Im; // Im
+    int Re;
+    int Im;
 public:
-    Complex(C a,C b);
-    C getRe() const;
-    void setRe(C a);
-    C getIm() const;
-    void setIm(C b);
-    Complex<C> operator+(const Complex<C> & C1) const;
-    Complex<C> operator-(const Complex<C> & C1) const;
+    Complex(int a,int b);
+    int getRe() const;
+    void setRe(int a);
+    int getIm() const;
+    void setIm(int b);
+    Complex operator+(const Complex & C1) const;
+    Complex operator-(const Complex & C1) const;
 };
 
