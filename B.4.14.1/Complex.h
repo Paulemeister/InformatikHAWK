@@ -1,14 +1,14 @@
 class Complex
 {
 private:
-    int Re;
-    int Im;
+    float Re;
+    float Im;
 public:
-    Complex(int a,int b);
-    int getRe() const;
-    void setRe(int a);
-    int getIm() const;
-    void setIm(int b);
+    Complex(float a,float b);
+    float getRe() const;
+    void setRe(float a);
+    float getIm() const;
+    void setIm(float b);
     Complex operator+(const Complex & C1) const;
     Complex operator-(const Complex & C1) const;
 };

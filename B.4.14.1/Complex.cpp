@@ -2,15 +2,15 @@
 #include <iostream>
 #include <string>
 
-Complex:: Complex(int a,int b) :Re{a},Im{b} {}
+Complex:: Complex(float a,float b) :Re{a},Im{b} {}
 
-int Complex::getRe() const {return Re;}
+float Complex::getRe() const {return Re;}
 
-int Complex::getIm() const {return Im;}
+float Complex::getIm() const {return Im;}
 
-void Complex::setRe(int a){Re = a;}
+void Complex::setRe(float a){Re = a;}
 
-void Complex::setIm(int b){Im = b;}
+void Complex::setIm(float b){Im = b;}
 
 Complex Complex::operator+ (const Complex& C1) const {
     return Complex (Re+C1.Re,Im+C1.Im);
@@ -26,7 +26,7 @@ std::ostream& operator<< (std::ostream& s, const Complex& c1){
 }
 
 std::istream& operator>> (std::istream& s, Complex& c1){
-    int temp;
+    float temp;
     std::cout << "Re: ";
     s >> temp;
     c1.setRe(temp);

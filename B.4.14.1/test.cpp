@@ -1,5 +1,5 @@
 //#include "Complex_template.cpp" //Implementation für beliebigen Datentyp (Template)
-#include "Complex.cpp" //Implementation nur für int
+#include "Complex.cpp" // Implementation nur für float
 #include <iostream>
 using namespace std;
 

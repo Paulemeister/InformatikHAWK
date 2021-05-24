@@ -17,7 +17,7 @@ public:
     C1DPunkt(int xi);
     int get_x() const;
     void set_x(int xi);
-    string toString();
+    string toString(); // virtual not needed (implied because of base class)
 };
 
 class C2DPunkt : public C1DPunkt
@@ -29,7 +29,7 @@ public:
     C2DPunkt(int xi, int yi);
     int get_y() const;
     void set_y(int yi);
-    string toString();
+    string toString(); //again virtual not needed
 };
 
 class C3DPunkt : public C2DPunkt
@@ -45,5 +45,3 @@ public:
 };
 
 void punkt_ausgeben  (Punkt *p);
-
-
