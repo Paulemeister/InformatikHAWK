@@ -20,6 +20,6 @@ int main()
     cout << c4 << endl;
     cin >> c4;
     cout << c4 << endl;
-    
+        
     return 0;
 }
