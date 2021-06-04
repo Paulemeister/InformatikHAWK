@@ -20,12 +20,4 @@ template <class T> class Stack
     void clear();
 };
 
-class StackError: public std::exception {
-    const char * description;
-    public:
-    StackError(const char * d): description{d}{}
-    const char * what() const noexcept{
-        return description;
-    }
-};
-
+#include "Stack.cpp"
